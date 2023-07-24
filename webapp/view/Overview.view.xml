@@ -1,0 +1,68 @@
+<mvc:View controllerName="smm.hcmapp.man.offboarding.controller.Overview" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:semantic="sap.m.semantic">
+    <semantic:FullscreenPage navButtonPress="onNavBack" showNavButton="true" id="overviewPage" floatingFooter="true" title="{i18n>appDescription}">
+        <VBox class="sapUiSmallMarginBeginEnd sapUiMediumMarginTop">
+            <Panel id="projectPanel" expandable="true" expanded="true" headerText="{i18n>employeePanelHeaderText}" width="auto">
+                <FlexBox justifyContent="Center" renderType="Bare">
+                    <Table id="projectTable" items="{employee>/results}" busyIndicatorDelay="0" contextualWidth="Auto" popinLayout="GridLarge" growing="true" growingThreshold="7" growingScrollToLoad="{= !${device>/system/desktop}}" busy="{overview>/projBusy}">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <Title text="{path: 'overview>/projCount', formatter: '.formatter.itemCountFormatter'}" visible="{= !${device>/system/phone}}" />
+                                <ToolbarSpacer />
+                                <Button tooltip="{i18n>viewFilterSettingsTooltip}" icon="sap-icon://filter" press="handleFilterButtonPressed" />
+                                <!-- <Label text="{i18n>showFrom}" visible="{= !${device>/system/phone}}" />
+                                <DatePicker id="projListDatePicker" dateValue="{overview>/projStartDate}" change="onProjDateChanged" width="10rem" tooltip="{i18n>showFrom}" /> -->
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <!-- Validity -->
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Request ID" />
+                            </Column>
+                            <!-- Project Name -->
+                            <Column minScreenWidth="Phone" demandPopin="true">
+                                <Text text="Request Date" />
+                            </Column>
+                            <!-- Project Status -->
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Last Employment Date" />
+                            </Column>
+                            <!-- Channel -->
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Exit Interview Date" />
+                            </Column>
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Current Status" />
+                            </Column>
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Next Status" />
+                            </Column>
+                            <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Text text="Responsible" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem type="Active" press="onProjectItemPressed">
+                                <cells>
+                                    <Text text="{employee>EmployeeNumber}"/>
+                                    <Text text="{employee>EmployeeName/FormattedName/}"/>
+                                    <Text text="{employee>EmployeeOrgunitLongtext}"/>
+                                    <Text text="{employee>EmployeePositionLongtext}"/>
+                                    <Text text="{employee>EmployeePositionLongtext}"/>
+                                    <Text text="{employee>EmployeePositionLongtext}"/>
+                                    <Text text="{employee>EmployeePositionLongtext}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </FlexBox>
+            </Panel>
+
+        </VBox>
+        <semantic:mainAction>
+            <semantic:MainAction id="btnCreateReq" text="{i18n>createBtnTxt}" press="onCreateReq" tooltip="{i18n>createViewTitle}" visible="{= !${employee>/ReadOnly}}" />
+        </semantic:mainAction>
+        <semantic:customFooterContent>
+            <Button id="btnUpdateReq" text="{i18n>updateBtnTxt}" press="onUpdateReq" tooltip="{i18n>updateViewTitle}" type="Emphasized" class="sapUiTinyMarginEnd"  visible="{= !${employee>/ReadOnly}}"/>
+        </semantic:customFooterContent>
+    </semantic:FullscreenPage>
+</mvc:View>

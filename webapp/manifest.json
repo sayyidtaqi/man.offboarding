@@ -1,0 +1,124 @@
+{
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "smm.hcmapp.man.offboarding",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.10.0",
+      "toolsId": "df509182-30b4-4e61-855d-44fb7aa35e5f"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZHCM_TESTEMPLOYEE_MAN_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "rootView": {
+      "viewName": "smm.hcmapp.man.offboarding.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.71.56",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "smm.hcmapp.man.offboarding.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "smm.hcmapp.man.offboarding.view",
+        "controlAggregation": "pages",
+        "transition" : "slide",
+        "controlId": "app",
+        "bypassed": {
+          "target": ["overview"]
+        },
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "overview",
+          "pattern": "",
+          "titleTarget": "",
+          "greedy": false,
+          "target": ["overview"]
+        }
+      ],
+      "targets": {
+        "overview": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewName": "Overview",
+          "viewId": "overviewPage",
+          "viewLevel": 1
+        }
+      }
+    }
+  }
+}

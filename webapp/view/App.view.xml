@@ -1,0 +1,5 @@
+<mvc:View controllerName="smm.hcmapp.man.offboarding.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Shell appWidthLimited="false">
+        <App id="app" autoFocus="false" />
+    </Shell>
+</mvc:View>
